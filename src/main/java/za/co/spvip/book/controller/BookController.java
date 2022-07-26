@@ -45,6 +45,23 @@ public class BookController {
         return "Book Added";
 
     }
+    //TODO: Get book by id
+
+
+
+
+    //TODO: Get books by categoryId
+
+
+
+    //TODO: Delete a book by Id
+
+
+
+    //TODO: Search books by title
+
+
+
 
 
 }

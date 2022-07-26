@@ -36,4 +36,7 @@ public class CategoryController {
     public Category getCategoryById(@PathVariable Long id){
         return categoryRepository.findById(id).orElse(null);
     }
+
+    //TODO: Delete Category by Id
+
 }

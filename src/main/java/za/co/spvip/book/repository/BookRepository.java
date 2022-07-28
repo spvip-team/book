@@ -13,6 +13,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     //SELECT * FROM book WHERE title LIKE '%title%'
     List<Book> findAllByTitleContaining(String title);
 
+    List<Book> findAllByAuthor(String author);
+
 
 
 }

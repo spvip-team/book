@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.co.spvip.book.entity.Category;
 import za.co.spvip.book.repository.CategoryRepository;
+import za.co.spvip.book.service.CategoryService;
 
 import java.util.List;
 
@@ -12,31 +13,30 @@ import java.util.List;
 @RequestMapping("categories")
 public class CategoryController {
     @Autowired
-    private  CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     // Get all categories
     @GetMapping
-    public List<Category> getAll(){
-        return categoryRepository.findAll();
+    public List<Category> getAll()
+    {
+        // Call the service to get all categories
+        return categoryService.findAll();
     }
     //Add New Category
     @PostMapping
     public String addCategory(@RequestBody Category category){
-        if (categoryRepository.findByName(category.getName()) != null) {
-            return "Category already exists";
-        }
-        Category newCategory = new Category();
-        newCategory.setName(category.getName());
-        newCategory.setDescription(category.getDescription());
-        categoryRepository.save(newCategory);
-        return "Category Added";
+       return categoryService.save(category);
     }
     //Get Category by Id
     @GetMapping("{id}")
     public Category getCategoryById(@PathVariable Long id){
-        return categoryRepository.findById(id).orElse(null);
+        return categoryService.findById(id);
     }
 
-    //TODO: Delete Category by Id
+    //Delete Category by Id
+    @DeleteMapping("{id}")
+    public String deleteCategoryById(@PathVariable Long id){
+        return categoryService.delete(id);
+    }
 
 }
